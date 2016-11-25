@@ -1,5 +1,6 @@
 ﻿Public Class AppInfoManager
     Public ReadOnly Property Apps As New List(Of IAppInfo)
+    Public ReadOnly Property SelfRepository As String = ""
 
     Public Sub UpdateAvailable()
         UpdateLocal()
@@ -37,6 +38,10 @@
         Dim dirs = IO.Directory.GetDirectories(DataPath)
         For Each path In dirs
             If IO.Directory.Exists(IO.Path.Combine(path, ".git")) Then
+                If IO.Path.GetFileName(path) = "Bwl.AppManager" Then
+                    'собственный репозиторий
+                    _SelfRepository = path
+                End If
                 'это гит-репозиторий
                 If IO.File.Exists(IO.Path.Combine(path, ".appsinfo")) Then
                     'файл со списком приложений имеется

@@ -1,6 +1,7 @@
 ﻿Public Class AppManagerForm
     Private Sub AppManagerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         App.AppInfoManager.UpdateAvailable()
+        Me.Text += " " + Application.ProductVersion
         UpdateAppsList()
     End Sub
 
@@ -20,5 +21,18 @@
             mainPanel.Controls.Add(ctrl )
         Next
         mainPanel.ResumeLayout()
+    End Sub
+
+    Private Sub bCheckUpdates_Click(sender As Object, e As EventArgs) Handles bCheckUpdates.Click
+        If App.AppInfoManager.SelfRepository > "" Then
+            Try
+                Shell(IO.Path.Combine(App.AppInfoManager.SelfRepository, "Bwl AppManager Installer.exe"), AppWinStyle.NormalFocus)
+                End
+            Catch ex As Exception
+                MsgBox("Failed to run Updater")
+            End Try
+        Else
+            MsgBox("Repository with Bwl.AppManager not found. Please install program with installer.")
+        End If
     End Sub
 End Class
