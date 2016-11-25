@@ -25,21 +25,26 @@
         GitTool.RepositoryPullOrClone(appPath, cloneUrl)
 
         For Each sol In IO.Directory.GetFiles(appPath, "*.sln")
-            Try
-                Dim bh As New BuildHelper(sol, "Release")
-                bh.Build("")
-            Catch ex As Exception
-            End Try
+            If sol.ToLower.Contains("installer") = False Then
+                Try
+                    Dim bh As New BuildHelper(sol, "Release")
+                    bh.Build("")
+                Catch ex As Exception
+                End Try
+            End If
         Next
 
         Dim foundExe As Boolean
+        Dim lastExe As String = ""
         For Each exe In IO.Directory.GetFiles(IO.Path.Combine(appPath, "release"), "*.exe", IO.SearchOption.AllDirectories)
             Dim lnkName = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), IO.Path.GetFileNameWithoutExtension(exe)) + ".lnk"
             InstallTools.CreateShortcut(lnkName, exe)
+            lastExe = exe
             foundExe = True
         Next
         If foundExe Then
             MsgBox(appName + " installed sucessfully!", MsgBoxStyle.Information)
+            Shell(lastExe, AppWinStyle.NormalFocus)
         Else
             MsgBox("Install failed, no EXE found after pull & build", MsgBoxStyle.Exclamation)
         End If
