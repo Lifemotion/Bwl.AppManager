@@ -2,6 +2,7 @@
     Public ReadOnly Property Sources As New List(Of String)
 
     Sub New()
+        Sources.Add("GitRepo,https://github.com/Lifemotion/GitterCake")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Framework")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.GitManager")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.ProjectGenerator")
