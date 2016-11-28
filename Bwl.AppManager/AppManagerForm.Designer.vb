@@ -28,11 +28,15 @@ Partial Class AppManagerForm
         Me.AppManagerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateAvailableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateAllInstalledAppsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.bCheckUpdates = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.cbAppsInstalled = New System.Windows.Forms.CheckBox()
         Me.cbAppsAvailable = New System.Windows.Forms.CheckBox()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.bCheckUpdates = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateAllInstalledAppsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -44,7 +48,7 @@ Partial Class AppManagerForm
         Me.mainPanel.AutoScroll = True
         Me.mainPanel.Location = New System.Drawing.Point(0, 46)
         Me.mainPanel.Name = "mainPanel"
-        Me.mainPanel.Size = New System.Drawing.Size(644, 446)
+        Me.mainPanel.Size = New System.Drawing.Size(784, 460)
         Me.mainPanel.TabIndex = 0
         '
         'menuMain
@@ -52,13 +56,13 @@ Partial Class AppManagerForm
         Me.menuMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AppManagerToolStripMenuItem, Me.AboutToolStripMenuItem})
         Me.menuMain.Location = New System.Drawing.Point(0, 0)
         Me.menuMain.Name = "menuMain"
-        Me.menuMain.Size = New System.Drawing.Size(644, 24)
+        Me.menuMain.Size = New System.Drawing.Size(784, 24)
         Me.menuMain.TabIndex = 1
         Me.menuMain.Text = "MenuStrip1"
         '
         'AppManagerToolStripMenuItem
         '
-        Me.AppManagerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateAvailableToolStripMenuItem, Me.UpdateAllInstalledAppsToolStripMenuItem})
+        Me.AppManagerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UpdateAvailableToolStripMenuItem, Me.ToolStripMenuItem1, Me.UpdateAllInstalledAppsToolStripMenuItem, Me.UpdateAllInstalledAppsToolStripMenuItem1, Me.ToolStripMenuItem2, Me.ExitToolStripMenuItem})
         Me.AppManagerToolStripMenuItem.Name = "AppManagerToolStripMenuItem"
         Me.AppManagerToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.AppManagerToolStripMenuItem.Text = "Apps"
@@ -66,46 +70,14 @@ Partial Class AppManagerForm
         'UpdateAvailableToolStripMenuItem
         '
         Me.UpdateAvailableToolStripMenuItem.Name = "UpdateAvailableToolStripMenuItem"
-        Me.UpdateAvailableToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.UpdateAvailableToolStripMenuItem.Text = "Check Available"
+        Me.UpdateAvailableToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.UpdateAvailableToolStripMenuItem.Text = "Refresh Available Apps"
         '
         'UpdateAllInstalledAppsToolStripMenuItem
         '
         Me.UpdateAllInstalledAppsToolStripMenuItem.Name = "UpdateAllInstalledAppsToolStripMenuItem"
-        Me.UpdateAllInstalledAppsToolStripMenuItem.Size = New System.Drawing.Size(206, 22)
-        Me.UpdateAllInstalledAppsToolStripMenuItem.Text = "Update All Installed Apps"
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 495)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(644, 22)
-        Me.StatusStrip1.TabIndex = 2
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'cbAppsInstalled
-        '
-        Me.cbAppsInstalled.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbAppsInstalled.Checked = True
-        Me.cbAppsInstalled.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbAppsInstalled.Location = New System.Drawing.Point(498, 23)
-        Me.cbAppsInstalled.Name = "cbAppsInstalled"
-        Me.cbAppsInstalled.Size = New System.Drawing.Size(70, 21)
-        Me.cbAppsInstalled.TabIndex = 3
-        Me.cbAppsInstalled.Text = "Installed"
-        Me.cbAppsInstalled.UseVisualStyleBackColor = True
-        '
-        'cbAppsAvailable
-        '
-        Me.cbAppsAvailable.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cbAppsAvailable.Checked = True
-        Me.cbAppsAvailable.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.cbAppsAvailable.Location = New System.Drawing.Point(574, 23)
-        Me.cbAppsAvailable.Name = "cbAppsAvailable"
-        Me.cbAppsAvailable.Size = New System.Drawing.Size(70, 21)
-        Me.cbAppsAvailable.TabIndex = 4
-        Me.cbAppsAvailable.Text = "Available"
-        Me.cbAppsAvailable.UseVisualStyleBackColor = True
+        Me.UpdateAllInstalledAppsToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.UpdateAllInstalledAppsToolStripMenuItem.Text = "Check Updates for Installed Apps"
         '
         'AboutToolStripMenuItem
         '
@@ -120,11 +92,65 @@ Partial Class AppManagerForm
         Me.bCheckUpdates.Size = New System.Drawing.Size(153, 22)
         Me.bCheckUpdates.Text = "Check Updates"
         '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 509)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(784, 22)
+        Me.StatusStrip1.TabIndex = 2
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'cbAppsInstalled
+        '
+        Me.cbAppsInstalled.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbAppsInstalled.Checked = True
+        Me.cbAppsInstalled.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbAppsInstalled.Location = New System.Drawing.Point(638, 23)
+        Me.cbAppsInstalled.Name = "cbAppsInstalled"
+        Me.cbAppsInstalled.Size = New System.Drawing.Size(70, 21)
+        Me.cbAppsInstalled.TabIndex = 3
+        Me.cbAppsInstalled.Text = "Installed"
+        Me.cbAppsInstalled.UseVisualStyleBackColor = True
+        '
+        'cbAppsAvailable
+        '
+        Me.cbAppsAvailable.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cbAppsAvailable.Checked = True
+        Me.cbAppsAvailable.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.cbAppsAvailable.Location = New System.Drawing.Point(714, 23)
+        Me.cbAppsAvailable.Name = "cbAppsAvailable"
+        Me.cbAppsAvailable.Size = New System.Drawing.Size(70, 21)
+        Me.cbAppsAvailable.TabIndex = 4
+        Me.cbAppsAvailable.Text = "Available"
+        Me.cbAppsAvailable.UseVisualStyleBackColor = True
+        '
+        'UpdateAllInstalledAppsToolStripMenuItem1
+        '
+        Me.UpdateAllInstalledAppsToolStripMenuItem1.Name = "UpdateAllInstalledAppsToolStripMenuItem1"
+        Me.UpdateAllInstalledAppsToolStripMenuItem1.Size = New System.Drawing.Size(248, 22)
+        Me.UpdateAllInstalledAppsToolStripMenuItem1.Text = "Update All Installed Apps"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(245, 6)
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(245, 6)
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
         'AppManagerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(644, 517)
+        Me.ClientSize = New System.Drawing.Size(784, 531)
         Me.Controls.Add(Me.cbAppsAvailable)
         Me.Controls.Add(Me.cbAppsInstalled)
         Me.Controls.Add(Me.StatusStrip1)
@@ -151,4 +177,8 @@ Partial Class AppManagerForm
     Friend WithEvents UpdateAllInstalledAppsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents bCheckUpdates As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripSeparator
+    Friend WithEvents UpdateAllInstalledAppsToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
 End Class

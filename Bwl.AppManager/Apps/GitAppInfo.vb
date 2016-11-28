@@ -26,7 +26,11 @@ Public Class GitAppInfo
     End Sub
 
     Public Sub UpdateLocal() Implements IAppInfo.UpdateLocal
-        If IO.Directory.Exists(IO.Path.Combine(BasePath, ".git")) Then _Downloaded = True
+        '  If IO.Directory.Exists(IO.Path.Combine(BasePath, ".git")) Then
+        Dim status = GitTools.GitTool.GetRepositoryStatus(BasePath)
+        If status.IsRepository Then _Downloaded = True
+        _UpdateExists = status.CanPull
+
         If IO.File.Exists(IO.Path.Combine(BasePath, ExecutablePath)) Then
             _Prepared = True
             Try
@@ -34,6 +38,9 @@ Public Class GitAppInfo
                 _Version = versionInfo.ProductVersion
             Catch ex As Exception
             End Try
+        Else
+            _Prepared = False
+            _Version = ""
         End If
         Try
             Dim remotes = GitTools.GitTool.GetRepositoryRemotes(BasePath)(0).Split(" ")
@@ -43,7 +50,9 @@ Public Class GitAppInfo
     End Sub
 
     Public Sub CheckUpdates() Implements IAppInfo.CheckUpdates
-
+        If Not Downloaded Then Throw New Exception("Must be installed to check updates")
+        GitTools.GitTool.RepositoryFetch(BasePath)
+        UpdateLocal()
     End Sub
 
     Public Sub InstallOrUpdate() Implements IAppInfo.InstallOrUpdate

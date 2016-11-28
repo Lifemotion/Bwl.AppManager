@@ -6,11 +6,12 @@
         UpdateLocal()
         For Each source In Sources
             Dim parts = source.Split(",")
-            If parts.Length = 2 Then
+            If parts.Length = 3 Then
                 If parts(0) = "GitRepo" Then
                     Dim url = parts(1)
+                    Dim branch = parts(2)
                     If url.ToLower.StartsWith("https://github.com/") Then
-                        Dim appinfourl = url.Replace("https://github.com/", "https://raw.githubusercontent.com/") + "/master/.appsinfo"
+                        Dim appinfourl = url.Replace("https://github.com/", "https://raw.githubusercontent.com/") + "/" + branch + "/.appsinfo"
                         Dim appinfoResp = System.Net.HttpWebRequest.Create(appinfourl).GetResponse
                         Dim appinfoReader = New IO.StreamReader(appinfoResp.GetResponseStream)
                         Dim appInfo = appinfoReader.ReadToEnd
@@ -34,7 +35,25 @@
         Next
     End Sub
 
+    Public Sub CheckUpdates()
+        For Each info In App.AppInfoManager.Apps
+            If info.Downloaded Then
+                info.CheckUpdates()
+            End If
+        Next
+    End Sub
+
+    Public Sub UpdateRemoteAll()
+        For Each info In App.AppInfoManager.Apps
+            If info.Downloaded Then
+                info.CheckUpdates()
+                If info.UpdateExists Then info.InstallOrUpdate()
+            End If
+        Next
+    End Sub
+
     Public Sub UpdateLocal()
+        Apps.Clear()
         Dim dirs = IO.Directory.GetDirectories(DataPath)
         For Each path In dirs
             If IO.Directory.Exists(IO.Path.Combine(path, ".git")) Then

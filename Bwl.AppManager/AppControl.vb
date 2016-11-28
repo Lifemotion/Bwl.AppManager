@@ -11,20 +11,33 @@ Public Class AppControl
 
     Public Overrides Sub Refresh()
         lName.Text = _info.Name
+        bRun.Enabled = False
+        ForeColor = Color.Black
+        bInstallUpdate.ForeColor = Color.Black
+        bMisc.ForeColor = Color.Black
         If _info.Downloaded Then
-            bInstallUpdate.Text = "Update"
             lStatus.Text = "Downloaded"
+            If _info.Prepared Then
+                bRun.Enabled = True
+                BackColor = Color.FromArgb(240, 255, 240)
+                lStatus.Text = "Ready"
+            Else
+            End If
+
+            If _info.UpdateExists Then
+                BackColor = Color.FromArgb(255, 255, 240)
+                bInstallUpdate.Text = "Update"
+                lStatus.Text += ", Update Exists"
+            Else
+                bInstallUpdate.Text = "Reinstall"
+            End If
         Else
             bInstallUpdate.Text = "Install"
             lStatus.Text = "Available"
+            ForeColor = Color.Gray
+
         End If
-        If _info.Prepared Then
-            bRun.Enabled = True
-            lStatus.Text = "Ready"
-        Else
-            bRun.Enabled = False
-        End If
-        lDescription.Text = ""
+        lDescription.Text = _info.Homepage
         lVersion.Text = _info.Version
         MyBase.Refresh()
     End Sub

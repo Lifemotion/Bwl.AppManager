@@ -75,7 +75,7 @@ Partial Class AppControl
         '
         Me.lVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lVersion.AutoSize = True
-        Me.lVersion.Location = New System.Drawing.Point(390, 7)
+        Me.lVersion.Location = New System.Drawing.Point(358, 7)
         Me.lVersion.Name = "lVersion"
         Me.lVersion.Size = New System.Drawing.Size(40, 13)
         Me.lVersion.TabIndex = 4
@@ -92,11 +92,11 @@ Partial Class AppControl
         'lStatus
         '
         Me.lStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lStatus.AutoSize = True
         Me.lStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lStatus.Location = New System.Drawing.Point(324, 7)
+        Me.lStatus.Location = New System.Drawing.Point(209, 7)
         Me.lStatus.Name = "lStatus"
-        Me.lStatus.Size = New System.Drawing.Size(55, 13)
+        Me.lStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.lStatus.Size = New System.Drawing.Size(143, 16)
         Me.lStatus.TabIndex = 6
         Me.lStatus.Text = "Installed"
         '
