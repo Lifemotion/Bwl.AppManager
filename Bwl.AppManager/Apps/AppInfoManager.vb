@@ -21,9 +21,10 @@
                         Dim lines = appInfo.Split({vbCr, vbLf}, StringSplitOptions.RemoveEmptyEntries)
                         For Each line In lines
                             Dim lparts = line.Split(",")
-                            If lparts.Length = 3 Then
+                            If lparts.Length >= 3 Then
                                 Dim gitapp As New GitAppInfo(path, lparts(0).Trim, lparts(2).Trim, lparts(1).Trim)
                                 gitapp.RepositoryUrl = url + ".git"
+                                If lparts.Length > 3 Then gitapp.Description = lparts(3)
                                 If Not Apps.Any(Function(app) app.Name = gitapp.Name) Then
                                     Apps.Add(gitapp)
                                 End If
@@ -31,6 +32,7 @@
                         Next
                     End If
                 End If
+
             End If
         Next
     End Sub
@@ -53,7 +55,6 @@
     End Sub
 
     Public Sub UpdateLocal()
-        Apps.Clear()
         Dim dirs = IO.Directory.GetDirectories(DataPath)
         For Each path In dirs
             If IO.Directory.Exists(IO.Path.Combine(path, ".git")) Then
@@ -67,9 +68,14 @@
                     Dim lines = IO.File.ReadAllLines(IO.Path.Combine(path, ".appsinfo"))
                     For Each line In lines
                         Dim parts = line.Split(",")
-                        If parts.Length = 3 Then
+                        If parts.Length >= 3 Then
                             Dim gitapp As New GitAppInfo(path, parts(0).Trim, parts(2).Trim, parts(1).Trim)
-                            Apps.Add(gitapp)
+                            If parts.Length > 3 Then gitapp.Description = parts(3)
+                            If Not Apps.Any(Function(app) app.Name = gitapp.Name) Then
+                                Apps.Add(gitapp)
+                            Else
+
+                            End If
                         End If
                     Next
                 End If

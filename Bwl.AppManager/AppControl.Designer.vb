@@ -22,6 +22,7 @@ Partial Class AppControl
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.lName = New System.Windows.Forms.Label()
         Me.bInstallUpdate = New System.Windows.Forms.Button()
         Me.bRun = New System.Windows.Forms.Button()
@@ -29,6 +30,10 @@ Partial Class AppControl
         Me.lVersion = New System.Windows.Forms.Label()
         Me.lDescription = New System.Windows.Forms.Label()
         Me.lStatus = New System.Windows.Forms.Label()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.OpenInExplorerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'lName
@@ -83,6 +88,10 @@ Partial Class AppControl
         '
         'lDescription
         '
+        Me.lDescription.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lDescription.AutoEllipsis = True
         Me.lDescription.Location = New System.Drawing.Point(4, 24)
         Me.lDescription.Name = "lDescription"
         Me.lDescription.Size = New System.Drawing.Size(234, 33)
@@ -100,6 +109,24 @@ Partial Class AppControl
         Me.lStatus.TabIndex = 6
         Me.lStatus.Text = "Installed"
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenInExplorerToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(171, 48)
+        '
+        'OpenInExplorerToolStripMenuItem
+        '
+        Me.OpenInExplorerToolStripMenuItem.Name = "OpenInExplorerToolStripMenuItem"
+        Me.OpenInExplorerToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.OpenInExplorerToolStripMenuItem.Text = "Open in Explorer..."
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
         'AppControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -113,6 +140,7 @@ Partial Class AppControl
         Me.Controls.Add(Me.lName)
         Me.Name = "AppControl"
         Me.Size = New System.Drawing.Size(436, 56)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -125,4 +153,7 @@ Partial Class AppControl
     Friend WithEvents lVersion As Label
     Friend WithEvents lDescription As Label
     Friend WithEvents lStatus As Label
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents OpenInExplorerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
 End Class

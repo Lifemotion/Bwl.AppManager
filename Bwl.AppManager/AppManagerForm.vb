@@ -8,14 +8,16 @@
                                                         Me.Invoke(Sub() UpdateAppsList())
                                                         App.AppInfoManager.CheckUpdates()
                                                         Me.Invoke(Sub() UpdateAppsList())
+                                                        Threading.Thread.Sleep(1000 * 60 * 30)
                                                     End Sub)
+        updateAvailable.IsBackground = True
         updateAvailable.Priority = Threading.ThreadPriority.Lowest
         updateAvailable.Start()
     End Sub
 
-    Private Sub UpdateAppsList()
+    Private Sub UpdateAppsList(Optional force As Boolean = False)
         Static lastAppsCount As Integer
-        If lastAppsCount <> App.AppInfoManager.Apps.Count Then
+        If lastAppsCount <> App.AppInfoManager.Apps.Count Or force Then
             mainPanel.SuspendLayout()
             mainPanel.Controls.Clear()
             Dim top = 0
@@ -59,24 +61,41 @@
     End Sub
 
     Private Sub cbAppsInstalled_CheckedChanged(sender As Object, e As EventArgs) Handles cbAppsInstalled.CheckedChanged, cbAppsAvailable.CheckedChanged
-        UpdateAppsList()
+        UpdateAppsList(True)
     End Sub
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
         Application.Exit()
+        End
+
     End Sub
 
     Private Sub UpdateAllInstalledAppsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateAllInstalledAppsToolStripMenuItem.Click
-        App.AppInfoManager.CheckUpdates()
-        UpdateAppsList()
+        Dim thr As New Threading.Thread(Sub()
+                                            App.AppInfoManager.CheckUpdates()
+                                            Me.Invoke(Sub() UpdateAppsList())
+                                        End Sub)
+        thr.Start()
     End Sub
 
     Private Sub UpdateAvailableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateAvailableToolStripMenuItem.Click
-        App.AppInfoManager.UpdateAvailable()
+        Dim thr As New Threading.Thread(Sub()
+                                            App.AppInfoManager.UpdateAvailable()
+                                            Me.Invoke(Sub() UpdateAppsList())
+                                        End Sub)
+        thr.Start()
     End Sub
 
     Private Sub UpdateAllInstalledAppsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles UpdateAllInstalledAppsToolStripMenuItem1.Click
-        App.AppInfoManager.UpdateRemoteAll()
-        UpdateAppsList()
+        Dim thr As New Threading.Thread(Sub()
+                                            App.AppInfoManager.UpdateRemoteAll()
+                                            Me.Invoke(Sub() UpdateAppsList())
+                                        End Sub)
+        thr.Start()
+    End Sub
+
+    Private Sub AppManagerForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Application.Exit()
+        End
     End Sub
 End Class

@@ -8,5 +8,7 @@
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.ProjectGenerator,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Hardware.Serial,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Tools.RunMonitorPlatform,master")
+        Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.GPS,master")
+        Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.RaspberryPi,master")
     End Sub
 End Module
