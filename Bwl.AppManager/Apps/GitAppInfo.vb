@@ -100,7 +100,7 @@ Public Class GitAppInfo
         Try
             Dim prc As New Process
             prc.StartInfo.FileName = ExecutablePath
-            prc.StartInfo.WorkingDirectory = BasePath
+            prc.StartInfo.WorkingDirectory = IO.Path.GetDirectoryName(ExecutablePath)
             prc.Start()
         Catch ex As Exception
         End Try
