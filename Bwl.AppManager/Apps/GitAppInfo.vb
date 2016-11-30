@@ -99,10 +99,11 @@ Public Class GitAppInfo
     Public Sub Run() Implements IAppInfo.Run
         Try
             Dim prc As New Process
-            prc.StartInfo.FileName = ExecutablePath
-            prc.StartInfo.WorkingDirectory = IO.Path.GetDirectoryName(ExecutablePath)
+            prc.StartInfo.FileName = IO.Path.Combine(BasePath, ExecutablePath)
+            prc.StartInfo.WorkingDirectory = IO.Path.GetDirectoryName(prc.StartInfo.FileName)
             prc.Start()
         Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Exclamation)
         End Try
     End Sub
 
