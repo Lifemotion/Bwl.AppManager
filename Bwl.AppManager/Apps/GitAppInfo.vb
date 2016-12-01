@@ -69,10 +69,11 @@ Public Class GitAppInfo
         GitTools.GitTool.RepositoryPullOrClone(BasePath, RepositoryUrl)
         Dim prc As New Process
         Try
-            prc.StartInfo.FileName = BuildCommand
+            prc.StartInfo.FileName = IO.Path.Combine (BasePath, BuildCommand)
             prc.StartInfo.WorkingDirectory = BasePath
             prc.StartInfo.RedirectStandardOutput = False
             prc.StartInfo.RedirectStandardError = False
+            prc.StartInfo.UseShellExecute = False
             prc.StartInfo.EnvironmentVariables.Add("nopause", "true")
             'prc.StartInfo.RedirectStandardInput = True
             prc.Start()
