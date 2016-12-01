@@ -73,6 +73,7 @@ Public Class GitAppInfo
             prc.StartInfo.WorkingDirectory = BasePath
             prc.StartInfo.RedirectStandardOutput = False
             prc.StartInfo.RedirectStandardError = False
+            prc.StartInfo.EnvironmentVariables.Add("nopause", "true")
             'prc.StartInfo.RedirectStandardInput = True
             prc.Start()
             'Dim thr As New Threading.Thread(Sub()
