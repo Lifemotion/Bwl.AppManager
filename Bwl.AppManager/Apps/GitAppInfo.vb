@@ -3,18 +3,18 @@
 Public Class GitAppInfo
     Implements IAppInfo
 
-    Public ReadOnly Property BasePath As String = "" Implements IAppInfo.BasePath
-    Public ReadOnly Property Name As String = "" Implements IAppInfo.Name
-    Public ReadOnly Property Homepage As String = "" Implements IAppInfo.Homepage
-    Public ReadOnly Property ExecutablePath As String = "" Implements IAppInfo.ExecutablePath
-    Public ReadOnly Property UpdateExists As Boolean Implements IAppInfo.UpdateExists
-    Public ReadOnly Property Downloaded As Boolean Implements IAppInfo.Downloaded
-    Public ReadOnly Property Prepared As Boolean Implements IAppInfo.Prepared
-    Public ReadOnly Property Version As String = "" Implements IAppInfo.Version
-    Public ReadOnly Property CurrentOperation As String = "" Implements IAppInfo.CurrentOperation
+    Public Property BasePath As String = "" Implements IAppInfo.BasePath
+    Public Property Name As String = "" Implements IAppInfo.Name
+    Public Property Homepage As String = "" Implements IAppInfo.Homepage
+    Public Property ExecutablePath As String = "" Implements IAppInfo.ExecutablePath
+    Public Property UpdateExists As Boolean Implements IAppInfo.UpdateExists
+    Public Property Downloaded As Boolean Implements IAppInfo.Downloaded
+    Public Property Prepared As Boolean Implements IAppInfo.Prepared
+    Public Property Version As String = "" Implements IAppInfo.Version
+    Public Property CurrentOperation As String = "" Implements IAppInfo.CurrentOperation
 
     Public Property RepositoryUrl As String = ""
-    Public ReadOnly Property BuildCommand As String = ""
+    Public Property BuildCommand As String = ""
 
     Public Property Description As String = "" Implements IAppInfo.Description
 

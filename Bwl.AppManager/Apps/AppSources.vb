@@ -1,5 +1,5 @@
 ﻿Module AppSources
-    Public ReadOnly Property Sources As New List(Of String)
+    Public Property Sources As New List(Of String)
 
     Sub New()
         Sources.Add("GitRepo,https://github.com/Lifemotion/GitterCake,cake-master")

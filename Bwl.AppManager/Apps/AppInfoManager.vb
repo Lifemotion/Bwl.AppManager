@@ -1,6 +1,13 @@
 ﻿Public Class AppInfoManager
-    Public ReadOnly Property Apps As New List(Of IAppInfo)
-    Public ReadOnly Property SelfRepository As String = ""
+    Private _apps As New List(Of IAppInfo)
+
+    Public ReadOnly Property Apps As List(Of IAppInfo)
+        Get
+            Return _apps
+        End Get
+    End Property
+
+    Public Property SelfRepository As String = ""
 
     Public Sub UpdateAvailable()
         UpdateLocal()
