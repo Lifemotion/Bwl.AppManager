@@ -27,16 +27,17 @@ Partial Class AppManagerForm
         Me.menuMain = New System.Windows.Forms.MenuStrip()
         Me.AppManagerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateAvailableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
         Me.UpdateAllInstalledAppsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UpdateAllInstalledAppsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.bCheckUpdates = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.cbAppsInstalled = New System.Windows.Forms.CheckBox()
         Me.cbAppsAvailable = New System.Windows.Forms.CheckBox()
-        Me.UpdateAllInstalledAppsToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MicrosoftBuildTools2015ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -73,15 +74,37 @@ Partial Class AppManagerForm
         Me.UpdateAvailableToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.UpdateAvailableToolStripMenuItem.Text = "Refresh Available Apps"
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(245, 6)
+        '
         'UpdateAllInstalledAppsToolStripMenuItem
         '
         Me.UpdateAllInstalledAppsToolStripMenuItem.Name = "UpdateAllInstalledAppsToolStripMenuItem"
         Me.UpdateAllInstalledAppsToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.UpdateAllInstalledAppsToolStripMenuItem.Text = "Check Updates for Installed Apps"
         '
+        'UpdateAllInstalledAppsToolStripMenuItem1
+        '
+        Me.UpdateAllInstalledAppsToolStripMenuItem1.Name = "UpdateAllInstalledAppsToolStripMenuItem1"
+        Me.UpdateAllInstalledAppsToolStripMenuItem1.Size = New System.Drawing.Size(248, 22)
+        Me.UpdateAllInstalledAppsToolStripMenuItem1.Text = "Update All Installed Apps"
+        '
+        'ToolStripMenuItem2
+        '
+        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(245, 6)
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
+        '
         'AboutToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.bCheckUpdates})
+        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.bCheckUpdates, Me.MicrosoftBuildTools2015ToolStripMenuItem})
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.AboutToolStripMenuItem.Text = "About"
@@ -89,7 +112,7 @@ Partial Class AppManagerForm
         'bCheckUpdates
         '
         Me.bCheckUpdates.Name = "bCheckUpdates"
-        Me.bCheckUpdates.Size = New System.Drawing.Size(153, 22)
+        Me.bCheckUpdates.Size = New System.Drawing.Size(213, 22)
         Me.bCheckUpdates.Text = "Check Updates"
         '
         'StatusStrip1
@@ -124,27 +147,11 @@ Partial Class AppManagerForm
         Me.cbAppsAvailable.Text = "Available"
         Me.cbAppsAvailable.UseVisualStyleBackColor = True
         '
-        'UpdateAllInstalledAppsToolStripMenuItem1
+        'MicrosoftBuildTools2015ToolStripMenuItem
         '
-        Me.UpdateAllInstalledAppsToolStripMenuItem1.Name = "UpdateAllInstalledAppsToolStripMenuItem1"
-        Me.UpdateAllInstalledAppsToolStripMenuItem1.Size = New System.Drawing.Size(248, 22)
-        Me.UpdateAllInstalledAppsToolStripMenuItem1.Text = "Update All Installed Apps"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(245, 6)
-        '
-        'ToolStripMenuItem2
-        '
-        Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(245, 6)
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
-        Me.ExitToolStripMenuItem.Text = "Exit"
+        Me.MicrosoftBuildTools2015ToolStripMenuItem.Name = "MicrosoftBuildTools2015ToolStripMenuItem"
+        Me.MicrosoftBuildTools2015ToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.MicrosoftBuildTools2015ToolStripMenuItem.Text = "Microsoft Build Tools 2015"
         '
         'AppManagerForm
         '
@@ -181,4 +188,5 @@ Partial Class AppManagerForm
     Friend WithEvents UpdateAllInstalledAppsToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MicrosoftBuildTools2015ToolStripMenuItem As ToolStripMenuItem
 End Class

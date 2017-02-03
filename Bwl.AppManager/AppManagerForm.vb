@@ -98,4 +98,8 @@
         Application.Exit()
         End
     End Sub
+
+    Private Sub MicrosoftBuildTools2015ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MicrosoftBuildTools2015ToolStripMenuItem.Click
+        Process.Start("https://www.microsoft.com/en-US/download/details.aspx?id=48159")
+    End Sub
 End Class
