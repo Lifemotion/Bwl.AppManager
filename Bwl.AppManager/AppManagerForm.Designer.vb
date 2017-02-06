@@ -34,10 +34,12 @@ Partial Class AppManagerForm
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.bCheckUpdates = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MicrosoftBuildTools2015ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.cbAppsInstalled = New System.Windows.Forms.CheckBox()
         Me.cbAppsAvailable = New System.Windows.Forms.CheckBox()
-        Me.MicrosoftBuildTools2015ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MSysGitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CheckDependensiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuMain.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -104,7 +106,7 @@ Partial Class AppManagerForm
         '
         'AboutToolStripMenuItem
         '
-        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.bCheckUpdates, Me.MicrosoftBuildTools2015ToolStripMenuItem})
+        Me.AboutToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.bCheckUpdates, Me.CheckDependensiesToolStripMenuItem, Me.MSysGitToolStripMenuItem, Me.MicrosoftBuildTools2015ToolStripMenuItem})
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
         Me.AboutToolStripMenuItem.Text = "About"
@@ -114,6 +116,12 @@ Partial Class AppManagerForm
         Me.bCheckUpdates.Name = "bCheckUpdates"
         Me.bCheckUpdates.Size = New System.Drawing.Size(213, 22)
         Me.bCheckUpdates.Text = "Check Updates"
+        '
+        'MicrosoftBuildTools2015ToolStripMenuItem
+        '
+        Me.MicrosoftBuildTools2015ToolStripMenuItem.Name = "MicrosoftBuildTools2015ToolStripMenuItem"
+        Me.MicrosoftBuildTools2015ToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.MicrosoftBuildTools2015ToolStripMenuItem.Text = "Microsoft Build Tools 2015"
         '
         'StatusStrip1
         '
@@ -147,11 +155,17 @@ Partial Class AppManagerForm
         Me.cbAppsAvailable.Text = "Available"
         Me.cbAppsAvailable.UseVisualStyleBackColor = True
         '
-        'MicrosoftBuildTools2015ToolStripMenuItem
+        'MSysGitToolStripMenuItem
         '
-        Me.MicrosoftBuildTools2015ToolStripMenuItem.Name = "MicrosoftBuildTools2015ToolStripMenuItem"
-        Me.MicrosoftBuildTools2015ToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
-        Me.MicrosoftBuildTools2015ToolStripMenuItem.Text = "Microsoft Build Tools 2015"
+        Me.MSysGitToolStripMenuItem.Name = "MSysGitToolStripMenuItem"
+        Me.MSysGitToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.MSysGitToolStripMenuItem.Text = "mSys Git"
+        '
+        'CheckDependensiesToolStripMenuItem
+        '
+        Me.CheckDependensiesToolStripMenuItem.Name = "CheckDependensiesToolStripMenuItem"
+        Me.CheckDependensiesToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
+        Me.CheckDependensiesToolStripMenuItem.Text = "Check Dependensies"
         '
         'AppManagerForm
         '
@@ -189,4 +203,6 @@ Partial Class AppManagerForm
     Friend WithEvents ToolStripMenuItem2 As ToolStripSeparator
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MicrosoftBuildTools2015ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MSysGitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CheckDependensiesToolStripMenuItem As ToolStripMenuItem
 End Class

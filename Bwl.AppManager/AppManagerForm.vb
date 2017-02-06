@@ -13,6 +13,10 @@
         updateAvailable.IsBackground = True
         updateAvailable.Priority = Threading.ThreadPriority.Lowest
         updateAvailable.Start()
+        If WelcomeForm.CheckAll = False Then
+            Dim form As New WelcomeForm
+            form.Show(Me)
+        End If
     End Sub
 
     Private Sub UpdateAppsList(Optional force As Boolean = False)
@@ -101,5 +105,14 @@
 
     Private Sub MicrosoftBuildTools2015ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MicrosoftBuildTools2015ToolStripMenuItem.Click
         Process.Start("https://www.microsoft.com/en-US/download/details.aspx?id=48159")
+    End Sub
+
+    Private Sub MSysGitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MSysGitToolStripMenuItem.Click
+        Process.Start("https://git-for-windows.github.io/")
+    End Sub
+
+    Private Sub CheckDependensiesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CheckDependensiesToolStripMenuItem.Click
+        Dim form As New WelcomeForm
+        form.Show(Me)
     End Sub
 End Class
