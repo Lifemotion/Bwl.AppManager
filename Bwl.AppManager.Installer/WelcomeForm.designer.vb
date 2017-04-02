@@ -132,7 +132,7 @@ Partial Class WelcomeForm
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "WelcomeForm"
-        Me.Text = "Welcome to AppManager"
+        Me.Text = "Welcome to AppManager Installer"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

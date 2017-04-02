@@ -59,7 +59,7 @@
 
     Public Shared Function RepositoryReset(repository As String, mode As String) As String
         If Not IO.Directory.Exists(repository) Then Return "directory not exists"
-        Dim result = Execute(repository, "reset --" + mode).ToLower
+        Dim result = Execute(repository, "reset --" + mode+" HEAD").ToLower
         Return result
     End Function
 
@@ -163,10 +163,12 @@
         If IO.Directory.Exists(targetPath) Then
             Dim status = GitTool.GetRepositoryStatus(targetPath)
             If status.IsRepository Then
+                GitTool.RepositoryReset(targetPath, "hard")
                 GitTool.RepositoryPull(targetPath)
             Else
                 Throw New Exception("Failed to clone repository " + url)
             End If
         End If
     End Sub
+
 End Class
