@@ -10,5 +10,6 @@
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Tools.RunMonitorPlatform,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.GPS,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.RaspberryPi,master")
+        Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.IrTerm,master")
     End Sub
 End Module
