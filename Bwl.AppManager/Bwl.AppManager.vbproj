@@ -80,7 +80,7 @@
     <Compile Include="AppControl.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Apps\GitAppInfo.vb" />
+    <Compile Include="Apps\Infos\GitAppInfo.vb" />
     <Compile Include="Apps\AppInfoManager.vb" />
     <Compile Include="AppManagerForm.vb">
       <SubType>Form</SubType>
@@ -89,7 +89,9 @@
       <DependentUpon>AppManagerForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Apps\IAppInfo.vb" />
+    <Compile Include="Apps\Loaders\GuthubAppInfoLoader.vb" />
+    <Compile Include="Apps\Infos\IAppInfo.vb" />
+    <Compile Include="Apps\Loaders\IAppInfoLoader.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
