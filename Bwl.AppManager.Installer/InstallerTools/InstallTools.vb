@@ -37,7 +37,7 @@
         Dim foundExe As Boolean
         Dim lastExe As String = ""
         For Each exe In IO.Directory.GetFiles(IO.Path.Combine(appPath, "release"), "*.exe", IO.SearchOption.AllDirectories)
-            Dim lnkName = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), IO.Path.GetFileNameWithoutExtension(exe)) + ".lnk"
+            Dim lnkName = IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), appName) + ".lnk"
             InstallTools.CreateShortcut(lnkName, exe)
             lastExe = exe
             foundExe = True

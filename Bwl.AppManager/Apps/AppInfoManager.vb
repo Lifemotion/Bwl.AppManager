@@ -39,7 +39,7 @@
         Dim dirs = IO.Directory.GetDirectories(DataPath)
         For Each path In dirs
             If IO.Directory.Exists(IO.Path.Combine(path, ".git")) Then
-                If IO.Path.GetFileName(path) = "Bwl.AppManager" Then
+                If IO.Path.GetFileName(path) = Settings.SelfRepositoryName Then
                     'собственный репозиторий
                     _SelfRepository = path
                 End If
