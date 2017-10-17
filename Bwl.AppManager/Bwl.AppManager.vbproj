@@ -108,6 +108,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Apps\AppSources.vb" />
+    <Compile Include="Settings.vb" />
     <Compile Include="WelcomeForm.Designer.vb">
       <DependentUpon>WelcomeForm.vb</DependentUpon>
     </Compile>

@@ -54,7 +54,7 @@
     Private Sub bCheckUpdates_Click(sender As Object, e As EventArgs) Handles bCheckUpdates.Click
         If App.AppInfoManager.SelfRepository > "" Then
             Try
-                Shell(IO.Path.Combine(App.AppInfoManager.SelfRepository, "Bwl AppManager Installer.exe"), AppWinStyle.NormalFocus)
+                Shell(IO.Path.Combine(App.AppInfoManager.SelfRepository, Settings.UpdaterName), AppWinStyle.NormalFocus)
                 End
             Catch ex As Exception
                 MsgBox("Failed to run Updater")
