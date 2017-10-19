@@ -46,6 +46,7 @@ Public Class AppControl
                     bInstallUpdate.Text = "Install"
                     lStatus.Text = "Available"
                     ForeColor = Color.Gray
+                    BackColor = Color.FromArgb(240, 240, 240)
 
                 End If
             End If
@@ -58,15 +59,25 @@ Public Class AppControl
 
     Private Sub bInstallUpdate_Click(sender As Object, e As EventArgs) Handles bInstallUpdate.Click
         Dim thr As New Threading.Thread(Sub()
-                                            _info.InstallOrUpdate()
-                                            Refresh()
+                                            Try
+                                                _info.InstallOrUpdate()
+                                                Refresh()
+                                            Catch ex As Exception
+                                                MsgBox("Install Or Update failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
+                                                _info.CurrentOperation = ""
+                                                Refresh()
+                                            End Try
                                         End Sub)
         thr.Start()
         Refresh()
     End Sub
 
     Private Sub bRun_Click(sender As Object, e As EventArgs) Handles bRun.Click
-        _info.Run()
+        Try
+            _info.Run()
+        Catch ex As Exception
+            MsgBox("Run failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
+        End Try
         Refresh()
     End Sub
 
@@ -75,16 +86,25 @@ Public Class AppControl
     End Sub
 
     Private Sub OpenInExplorerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenInExplorerToolStripMenuItem.Click
-        Dim prc As New Process
-        prc.StartInfo.FileName = "explorer"
-        prc.StartInfo.Arguments = "."
-        prc.StartInfo.WorkingDirectory = _info.BasePath
-        prc.Start()
+        Try
+            Dim prc As New Process
+            prc.StartInfo.FileName = "explorer"
+            prc.StartInfo.Arguments = "."
+            prc.StartInfo.WorkingDirectory = _info.BasePath
+            prc.Start()
+        Catch ex As Exception
+            MsgBox("Explorer failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
+        End Try
     End Sub
 
     Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
         If MsgBox("Are You sure to delete " + _info.Name + "?", MsgBoxStyle.Exclamation Or MsgBoxStyle.OkCancel, "Confirm Delete") = MsgBoxResult.Ok Then
-            _info.Delete()
+            Try
+                _info.Delete()
+            Catch ex As Exception
+                MsgBox("Delete failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
+            End Try
+            Refresh()
         End If
     End Sub
 End Class

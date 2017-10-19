@@ -40,16 +40,16 @@ Partial Class AppControl
         '
         Me.lName.AutoSize = True
         Me.lName.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lName.Location = New System.Drawing.Point(3, 3)
+        Me.lName.Location = New System.Drawing.Point(-1, 0)
         Me.lName.Name = "lName"
-        Me.lName.Size = New System.Drawing.Size(151, 20)
+        Me.lName.Size = New System.Drawing.Size(253, 20)
         Me.lName.TabIndex = 0
-        Me.lName.Text = "Bwl SimplSerial Tool"
+        Me.lName.Text = "Bwl SimplSerial Tool Tool Tool Tool"
         '
         'bInstallUpdate
         '
         Me.bInstallUpdate.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bInstallUpdate.Location = New System.Drawing.Point(244, 28)
+        Me.bInstallUpdate.Location = New System.Drawing.Point(244, 20)
         Me.bInstallUpdate.Name = "bInstallUpdate"
         Me.bInstallUpdate.Size = New System.Drawing.Size(75, 23)
         Me.bInstallUpdate.TabIndex = 1
@@ -59,7 +59,7 @@ Partial Class AppControl
         'bRun
         '
         Me.bRun.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bRun.Location = New System.Drawing.Point(358, 28)
+        Me.bRun.Location = New System.Drawing.Point(358, 20)
         Me.bRun.Name = "bRun"
         Me.bRun.Size = New System.Drawing.Size(75, 23)
         Me.bRun.TabIndex = 2
@@ -69,7 +69,7 @@ Partial Class AppControl
         'bMisc
         '
         Me.bMisc.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.bMisc.Location = New System.Drawing.Point(325, 28)
+        Me.bMisc.Location = New System.Drawing.Point(325, 20)
         Me.bMisc.Name = "bMisc"
         Me.bMisc.Size = New System.Drawing.Size(27, 23)
         Me.bMisc.TabIndex = 3
@@ -80,7 +80,7 @@ Partial Class AppControl
         '
         Me.lVersion.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lVersion.AutoSize = True
-        Me.lVersion.Location = New System.Drawing.Point(358, 7)
+        Me.lVersion.Location = New System.Drawing.Point(358, 3)
         Me.lVersion.Name = "lVersion"
         Me.lVersion.Size = New System.Drawing.Size(40, 13)
         Me.lVersion.TabIndex = 4
@@ -92,17 +92,18 @@ Partial Class AppControl
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lDescription.AutoEllipsis = True
-        Me.lDescription.Location = New System.Drawing.Point(4, 24)
+        Me.lDescription.Location = New System.Drawing.Point(1, 19)
         Me.lDescription.Name = "lDescription"
-        Me.lDescription.Size = New System.Drawing.Size(234, 33)
+        Me.lDescription.Size = New System.Drawing.Size(234, 40)
         Me.lDescription.TabIndex = 5
-        Me.lDescription.Text = "Description"
+        Me.lDescription.Text = "Description Description Description Description Description Description Descripti" &
+    "on Description Description"
         '
         'lStatus
         '
         Me.lStatus.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
-        Me.lStatus.Location = New System.Drawing.Point(209, 7)
+        Me.lStatus.Location = New System.Drawing.Point(209, 2)
         Me.lStatus.Name = "lStatus"
         Me.lStatus.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.lStatus.Size = New System.Drawing.Size(143, 16)
@@ -131,15 +132,15 @@ Partial Class AppControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.lStatus)
         Me.Controls.Add(Me.lDescription)
-        Me.Controls.Add(Me.lVersion)
-        Me.Controls.Add(Me.bMisc)
-        Me.Controls.Add(Me.bRun)
-        Me.Controls.Add(Me.bInstallUpdate)
         Me.Controls.Add(Me.lName)
+        Me.Controls.Add(Me.bMisc)
+        Me.Controls.Add(Me.bInstallUpdate)
+        Me.Controls.Add(Me.lStatus)
+        Me.Controls.Add(Me.lVersion)
+        Me.Controls.Add(Me.bRun)
         Me.Name = "AppControl"
-        Me.Size = New System.Drawing.Size(436, 56)
+        Me.Size = New System.Drawing.Size(436, 47)
         Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()

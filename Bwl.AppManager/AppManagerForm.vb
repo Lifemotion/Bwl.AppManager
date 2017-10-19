@@ -33,9 +33,9 @@
                     Dim ctrl As New AppControl
                     ctrl.Left = 10
                     ctrl.Top = top
-                    ctrl.Width = mainPanel.Width - 20
+                    '    ctrl.Width = mainPanel.Width - 20
                     ctrl.Anchor = AnchorStyles.Left Or AnchorStyles.Top Or AnchorStyles.Right
-                    top += ctrl.Height + 10
+                    top += ctrl.Height + 5
 
                     ctrl.SetAppInfo(info)
                     mainPanel.Controls.Add(ctrl)

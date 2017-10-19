@@ -31,7 +31,7 @@ Public Class GitAppInfo
     Public Sub UpdateLocal() Implements IAppInfo.UpdateLocal
         '  If IO.Directory.Exists(IO.Path.Combine(BasePath, ".git")) Then
         Dim status = GitTools.GitTool.GetRepositoryStatus(BasePath)
-        If status.IsRepository Then _Downloaded = True
+        If status.IsRepository Then _Downloaded = True Else _Downloaded = False
         _UpdateExists = status.CanPull
 
         If IO.File.Exists(IO.Path.Combine(BasePath, ExecutablePath)) Then
@@ -111,9 +111,11 @@ Public Class GitAppInfo
 
     Public Sub Delete() Implements IAppInfo.Delete
         Try
-            IO.Directory.Delete(BasePath, True)
+            DeleteReadOnly.ForceDelete(BasePath)
+            UpdateLocal()
         Catch ex As Exception
+            UpdateLocal()
+            Throw ex
         End Try
-        UpdateLocal()
     End Sub
 End Class

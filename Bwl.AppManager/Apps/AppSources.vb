@@ -12,6 +12,7 @@
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.GPS,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.RaspberryPi,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.IrTerm,master")
+        Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Hardware.LowFreqGenerator,master")
 
         InfoLoaders.Add(New GuthubAppInfoLoader)
     End Sub

@@ -92,6 +92,7 @@
     <Compile Include="Apps\Loaders\GuthubAppInfoLoader.vb" />
     <Compile Include="Apps\Infos\IAppInfo.vb" />
     <Compile Include="Apps\Loaders\IAppInfoLoader.vb" />
+    <Compile Include="DeleteReadOnly.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
