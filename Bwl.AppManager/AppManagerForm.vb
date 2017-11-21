@@ -1,6 +1,23 @@
 ﻿Public Class AppManagerForm
     Private Sub AppManagerForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Text += " " + Application.ProductVersion
+        ReloadApps()
+        Dim checkDependensies As New Threading.Thread(Sub()
+                                                          Threading.Thread.Sleep(1000)
+                                                          Me.Invoke(Sub()
+                                                                        If WelcomeForm.CheckAll = False Then
+                                                                            Dim form As New WelcomeForm
+                                                                            form.Show(Me)
+                                                                        End If
+                                                                    End Sub)
+                                                      End Sub)
+        checkDependensies.IsBackground = True
+        checkDependensies.Priority = Threading.ThreadPriority.Lowest
+        checkDependensies.Start()
+    End Sub
+
+    Private Sub ReloadApps()
+        App.AppInfoManager.Apps.Clear()
         App.AppInfoManager.UpdateLocal()
         UpdateAppsList()
         Dim updateAvailable As New Threading.Thread(Sub()
@@ -18,21 +35,6 @@
         updateAvailable.IsBackground = True
         updateAvailable.Priority = Threading.ThreadPriority.Lowest
         updateAvailable.Start()
-
-
-
-        Dim checkDependensies As New Threading.Thread(Sub()
-                                                          Threading.Thread.Sleep(1000)
-                                                          Me.Invoke(Sub()
-                                                                        If WelcomeForm.CheckAll = False Then
-                                                                            Dim form As New WelcomeForm
-                                                                            form.Show(Me)
-                                                                        End If
-                                                                    End Sub)
-                                                      End Sub)
-        checkDependensies.IsBackground = True
-        checkDependensies.Priority = Threading.ThreadPriority.Lowest
-        checkDependensies.Start()
     End Sub
 
     Private Sub UpdateAppsList(Optional force As Boolean = False)
@@ -52,7 +54,7 @@
                     '    ctrl.Width = mainPanel.Width - 20
                     ctrl.Anchor = AnchorStyles.Left Or AnchorStyles.Top Or AnchorStyles.Right
                     top += ctrl.Height + 5
-
+                    AddHandler ctrl.RequestPanelUpdate, Sub() Me.Invoke(Sub() ReloadApps())
                     ctrl.SetAppInfo(info)
                     mainPanel.Controls.Add(ctrl)
                 End If

@@ -61,6 +61,7 @@ Public Class AppControl
         Dim thr As New Threading.Thread(Sub()
                                             Try
                                                 _info.InstallOrUpdate()
+                                                If _info.Prepared = False Then RaiseEvent RequestPanelUpdate()
                                                 Refresh()
                                             Catch ex As Exception
                                                 MsgBox("Install Or Update failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
