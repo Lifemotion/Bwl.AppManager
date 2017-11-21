@@ -4,6 +4,7 @@
         App.AppInfoManager.UpdateLocal()
         UpdateAppsList()
         Dim updateAvailable As New Threading.Thread(Sub()
+                                                        Threading.Thread.Sleep(1000)
                                                         Try
                                                             App.AppInfoManager.UpdateAvailable()
                                                             Me.Invoke(Sub() UpdateAppsList())
@@ -17,10 +18,21 @@
         updateAvailable.IsBackground = True
         updateAvailable.Priority = Threading.ThreadPriority.Lowest
         updateAvailable.Start()
-        If WelcomeForm.CheckAll = False Then
-            Dim form As New WelcomeForm
-            form.Show(Me)
-        End If
+
+
+
+        Dim checkDependensies As New Threading.Thread(Sub()
+                                                          Threading.Thread.Sleep(1000)
+                                                          Me.Invoke(Sub()
+                                                                        If WelcomeForm.CheckAll = False Then
+                                                                            Dim form As New WelcomeForm
+                                                                            form.Show(Me)
+                                                                        End If
+                                                                    End Sub)
+                                                      End Sub)
+        checkDependensies.IsBackground = True
+        checkDependensies.Priority = Threading.ThreadPriority.Lowest
+        checkDependensies.Start()
     End Sub
 
     Private Sub UpdateAppsList(Optional force As Boolean = False)

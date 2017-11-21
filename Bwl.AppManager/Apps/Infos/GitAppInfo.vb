@@ -29,11 +29,11 @@ Public Class GitAppInfo
     End Sub
 
     Public Sub UpdateLocal() Implements IAppInfo.UpdateLocal
-        '  If IO.Directory.Exists(IO.Path.Combine(BasePath, ".git")) Then
-        Dim status = GitTools.GitTool.GetRepositoryStatus(BasePath)
-        If status.IsRepository Then _Downloaded = True Else _Downloaded = False
-        _UpdateExists = status.CanPull
-
+        If IO.Directory.Exists(IO.Path.Combine(BasePath, ".git")) Then
+            _Downloaded = True
+        Else
+            _Downloaded = False
+        End If
         If IO.File.Exists(IO.Path.Combine(BasePath, ExecutablePath)) Then
             _Prepared = True
             Try
@@ -45,11 +45,6 @@ Public Class GitAppInfo
             _Prepared = False
             _Version = ""
         End If
-        Try
-            Dim remotes = GitTools.GitTool.GetRepositoryRemotes(BasePath)(0).Split(" ")
-            RepositoryUrl = remotes(1)
-        Catch ex As Exception
-        End Try
         RaiseEvent Changed(Me)
     End Sub
 
@@ -59,6 +54,8 @@ Public Class GitAppInfo
         Try
             RaiseEvent Changed(Me)
             GitTools.GitTool.RepositoryFetch(BasePath)
+            Dim status = GitTools.GitTool.GetRepositoryStatus(BasePath)
+            _UpdateExists = status.CanPull
             _CurrentOperation = ""
             UpdateLocal()
         Catch ex As Exception
@@ -73,7 +70,14 @@ Public Class GitAppInfo
         _CurrentOperation = "Install\Update"
         RaiseEvent Changed(Me)
         Dim success = True
+        Try
+            Dim remotes = GitTools.GitTool.GetRepositoryRemotes(BasePath)(0).Split(" ")
+            RepositoryUrl = remotes(1)
+        Catch ex As Exception
+        End Try
         GitTools.GitTool.RepositoryPullOrClone(BasePath, RepositoryUrl)
+        Dim status = GitTools.GitTool.GetRepositoryStatus(BasePath)
+        _UpdateExists = status.CanPull
         Dim prc As New Process
         Try
             prc.StartInfo.FileName = IO.Path.Combine (BasePath, BuildCommand)
