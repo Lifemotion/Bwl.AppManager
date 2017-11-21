@@ -56,10 +56,17 @@ Public Class GitAppInfo
     Public Sub CheckUpdates() Implements IAppInfo.CheckUpdates
         If Not Downloaded Then Throw New Exception("Must be installed to check updates")
         _CurrentOperation = "Checking updates"
-        RaiseEvent Changed(Me)
-        GitTools.GitTool.RepositoryFetch(BasePath)
-        _CurrentOperation = ""
-        UpdateLocal()
+        Try
+            RaiseEvent Changed(Me)
+            GitTools.GitTool.RepositoryFetch(BasePath)
+            _CurrentOperation = ""
+            UpdateLocal()
+        Catch ex As Exception
+            _CurrentOperation = ""
+            UpdateLocal()
+            Throw ex
+        End Try
+
     End Sub
 
     Public Sub InstallOrUpdate() Implements IAppInfo.InstallOrUpdate

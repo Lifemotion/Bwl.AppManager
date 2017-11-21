@@ -4,10 +4,14 @@
         App.AppInfoManager.UpdateLocal()
         UpdateAppsList()
         Dim updateAvailable As New Threading.Thread(Sub()
-                                                        App.AppInfoManager.UpdateAvailable()
-                                                        Me.Invoke(Sub() UpdateAppsList())
-                                                        App.AppInfoManager.CheckUpdates()
-                                                        Me.Invoke(Sub() UpdateAppsList())
+                                                        Try
+                                                            App.AppInfoManager.UpdateAvailable()
+                                                            Me.Invoke(Sub() UpdateAppsList())
+                                                            App.AppInfoManager.CheckUpdates()
+                                                            Me.Invoke(Sub() UpdateAppsList())
+                                                        Catch ex As Exception
+
+                                                        End Try
                                                         Threading.Thread.Sleep(1000 * 60 * 30)
                                                     End Sub)
         updateAvailable.IsBackground = True
@@ -76,24 +80,36 @@
 
     Private Sub UpdateAllInstalledAppsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateAllInstalledAppsToolStripMenuItem.Click
         Dim thr As New Threading.Thread(Sub()
-                                            App.AppInfoManager.CheckUpdates()
-                                            Me.Invoke(Sub() UpdateAppsList())
+                                            Try
+                                                App.AppInfoManager.CheckUpdates()
+                                                Me.Invoke(Sub() UpdateAppsList())
+                                            Catch ex As Exception
+                                                MsgBox("Failed to check updates: " + ex.Message, MsgBoxStyle.Exclamation)
+                                            End Try
                                         End Sub)
         thr.Start()
     End Sub
 
     Private Sub UpdateAvailableToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UpdateAvailableToolStripMenuItem.Click
         Dim thr As New Threading.Thread(Sub()
-                                            App.AppInfoManager.UpdateAvailable()
-                                            Me.Invoke(Sub() UpdateAppsList())
+                                            Try
+                                                App.AppInfoManager.UpdateAvailable()
+                                                Me.Invoke(Sub() UpdateAppsList())
+                                            Catch ex As Exception
+                                                MsgBox("Failed to check updates: " + ex.Message, MsgBoxStyle.Exclamation)
+                                            End Try
                                         End Sub)
         thr.Start()
     End Sub
 
     Private Sub UpdateAllInstalledAppsToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles UpdateAllInstalledAppsToolStripMenuItem1.Click
         Dim thr As New Threading.Thread(Sub()
-                                            App.AppInfoManager.UpdateRemoteAll()
-                                            Me.Invoke(Sub() UpdateAppsList())
+                                            Try
+                                                App.AppInfoManager.UpdateRemoteAll()
+                                                Me.Invoke(Sub() UpdateAppsList())
+                                            Catch ex As Exception
+                                                MsgBox("Failed to check updates: " + ex.Message, MsgBoxStyle.Exclamation)
+                                            End Try
                                         End Sub)
         thr.Start()
     End Sub
