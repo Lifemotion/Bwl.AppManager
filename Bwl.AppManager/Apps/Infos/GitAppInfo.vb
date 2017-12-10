@@ -1,7 +1,16 @@
-﻿Imports Bwl.AppManager
+﻿Imports System.Runtime.InteropServices
+Imports Bwl.AppManager
 
 Public Class GitAppInfo
     Implements IAppInfo
+    <DllImport("User32.dll")>
+    Private Shared Function SendMessage(hWnd As IntPtr, uMsg As Integer, wParam As Integer, lParam As String) As Integer
+    End Function
+    Private Const WM_SETTEXT As Integer = &HC
+    Private Const WM_KEYDOWN As Integer = &H100
+    Private Const WM_KEYUP As Integer = &H101
+    Private Const WM_CHAR As Integer = &H102
+    Private Const VK_RETURN As Integer = &HD
 
     Public Property BasePath As String = "" Implements IAppInfo.BasePath
     Public Property Name As String = "" Implements IAppInfo.Name
@@ -80,7 +89,7 @@ Public Class GitAppInfo
         _UpdateExists = status.CanPull
         Dim prc As New Process
         Try
-            prc.StartInfo.FileName = IO.Path.Combine (BasePath, BuildCommand)
+            prc.StartInfo.FileName = IO.Path.Combine(BasePath, BuildCommand)
             prc.StartInfo.WorkingDirectory = BasePath
             prc.StartInfo.RedirectStandardOutput = False
             prc.StartInfo.RedirectStandardError = False
@@ -88,18 +97,23 @@ Public Class GitAppInfo
             prc.StartInfo.EnvironmentVariables.Add("nopause", "true")
             'prc.StartInfo.RedirectStandardInput = True
             prc.Start()
-            'Dim thr As New Threading.Thread(Sub()
-            'Do While prc.HasExited = False
-            'prc.StandardInput.Write(" ")
-            'Threading.Thread.Sleep(500)
-            'Loop
-            'End Sub)
-            'thr.Start()
+            Dim thr As New Threading.Thread(Sub()
+                                                Try
+                                                    Do While prc.HasExited = False
+                                                        SendMessage(prc.MainWindowHandle, WM_KEYDOWN, VK_RETURN, Nothing)
+                                                        SendMessage(prc.MainWindowHandle, WM_CHAR, VK_RETURN, Nothing)
+                                                        Threading.Thread.Sleep(500)
+                                                    Loop
+                                                Catch ex As Exception
+                                                End Try
+                                            End Sub)
+            thr.IsBackground = True
+            thr.Start()
             prc.WaitForExit(30000)
         Catch ex As Exception
         End Try
         Try
-            prc.kill
+            prc.Kill()
         Catch ex As Exception
 
         End Try
