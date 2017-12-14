@@ -9,6 +9,7 @@
     Property UpdateExists As Boolean
     Property CurrentOperation As String
     Property Description As String
+    Property AppIcon As Icon
     Event Changed(source As IAppInfo)
     Sub UpdateLocal()
     Sub CheckUpdates()

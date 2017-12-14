@@ -3,6 +3,7 @@ Imports Bwl.AppManager
 
 Public Class GitAppInfo
     Implements IAppInfo
+
     <DllImport("User32.dll")>
     Private Shared Function SendMessage(hWnd As IntPtr, uMsg As Integer, wParam As Integer, lParam As String) As Integer
     End Function
@@ -26,6 +27,7 @@ Public Class GitAppInfo
     Public Property BuildCommand As String = ""
 
     Public Property Description As String = "" Implements IAppInfo.Description
+    Public Property AppIcon As Icon Implements IAppInfo.AppIcon
 
     Public Sub New(basePath As String, name As String, executablePath As String, buildCommand As String)
         Me.BasePath = basePath
@@ -48,6 +50,10 @@ Public Class GitAppInfo
             Try
                 Dim versionInfo = FileVersionInfo.GetVersionInfo(IO.Path.Combine(BasePath, ExecutablePath))
                 _Version = versionInfo.ProductVersion
+            Catch ex As Exception
+            End Try
+            Try
+                AppIcon = Icon.ExtractAssociatedIcon(IO.Path.Combine(BasePath, ExecutablePath))
             Catch ex As Exception
             End Try
         Else

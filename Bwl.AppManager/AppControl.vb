@@ -2,6 +2,7 @@
 
 Public Class AppControl
     Private _info As IAppInfo
+    Private _runAllowed As Boolean
     Public Event RequestPanelUpdate()
 
     Friend Sub SetAppInfo(info As IAppInfo)
@@ -16,20 +17,20 @@ Public Class AppControl
         Else
             lName.Text = _info.Name
             If _info.CurrentOperation > "" Then
-                bRun.Enabled = False
+                _runAllowed = False
                 bInstallUpdate.Enabled = False
                 lStatus.Text = _info.CurrentOperation
                 BackColor = Color.FromArgb(240, 240, 255)
             Else
                 bInstallUpdate.Enabled = True
-                bRun.Enabled = False
+                _runAllowed = False
                 ForeColor = Color.Black
                 bInstallUpdate.ForeColor = Color.Black
                 bMisc.ForeColor = Color.Black
                 If _info.Downloaded Then
                     lStatus.Text = "Downloaded"
                     If _info.Prepared Then
-                        bRun.Enabled = True
+                        _runAllowed = True
                         BackColor = Color.FromArgb(240, 255, 240)
                         lStatus.Text = "Ready"
                     Else
@@ -38,7 +39,7 @@ Public Class AppControl
                     If _info.UpdateExists Then
                         BackColor = Color.FromArgb(255, 255, 240)
                         bInstallUpdate.Text = "Update"
-                        lStatus.Text += ", Update Exists"
+                        lStatus.Text += ", Update Available"
                     Else
                         bInstallUpdate.Text = "Reinstall"
                     End If
@@ -47,10 +48,13 @@ Public Class AppControl
                     lStatus.Text = "Available"
                     ForeColor = Color.Gray
                     BackColor = Color.FromArgb(240, 240, 240)
-
                 End If
             End If
-
+            Try
+                pbIcon.Image = _info.AppIcon.ToBitmap
+                pbIcon.Refresh()
+            Catch ex As Exception
+            End Try
             lDescription.Text = _info.Description
             lVersion.Text = _info.Version
             MyBase.Refresh()
@@ -73,13 +77,8 @@ Public Class AppControl
         Refresh()
     End Sub
 
-    Private Sub bRun_Click(sender As Object, e As EventArgs) Handles bRun.Click
-        Try
-            _info.Run()
-        Catch ex As Exception
-            MsgBox("Run failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
-        End Try
-        Refresh()
+    Private Sub bRun_Click(sender As Object, e As EventArgs)
+
     End Sub
 
     Private Sub bMisc_Click(sender As Object, e As EventArgs) Handles bMisc.Click
@@ -104,6 +103,17 @@ Public Class AppControl
                 _info.Delete()
             Catch ex As Exception
                 MsgBox("Delete failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
+            End Try
+            Refresh()
+        End If
+    End Sub
+
+    Private Sub lName_DoubleClick(sender As Object, e As EventArgs) Handles pbIcon.DoubleClick, MyBase.DoubleClick, lVersion.DoubleClick, lStatus.DoubleClick, lName.DoubleClick, lDescription.DoubleClick
+        If _runAllowed Then
+            Try
+                _info.Run()
+            Catch ex As Exception
+                MsgBox("Run failed!" + vbCrLf + ex.Message, MsgBoxStyle.Critical)
             End Try
             Refresh()
         End If

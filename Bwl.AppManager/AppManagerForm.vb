@@ -23,12 +23,17 @@
         Dim updateAvailable As New Threading.Thread(Sub()
                                                         Threading.Thread.Sleep(1000)
                                                         Try
+                                                            GitTools.GitTool.RepositoryFetch(App.AppInfoManager.SelfRepository)
+                                                            Dim status = GitTools.GitTool.GetRepositoryStatus(App.AppInfoManager.SelfRepository)
+                                                            Me.Invoke(Sub() mUpdateAvailable.Visible = status.CanPull)
+                                                        Catch ex As Exception
+                                                        End Try
+                                                        Try
                                                             App.AppInfoManager.UpdateAvailable()
                                                             Me.Invoke(Sub() UpdateAppsList())
                                                             App.AppInfoManager.CheckUpdates()
                                                             Me.Invoke(Sub() UpdateAppsList())
                                                         Catch ex As Exception
-
                                                         End Try
                                                         Threading.Thread.Sleep(1000 * 60 * 30)
                                                     End Sub)
@@ -69,7 +74,7 @@
         End If
     End Sub
 
-    Private Sub bCheckUpdates_Click(sender As Object, e As EventArgs) Handles bCheckUpdates.Click
+    Private Sub bCheckUpdates_Click(sender As Object, e As EventArgs) Handles bCheckUpdates.Click, mUpdateAvailable.Click
         If App.AppInfoManager.SelfRepository > "" Then
             Try
                 Shell(IO.Path.Combine(App.AppInfoManager.SelfRepository, Settings.UpdaterName), AppWinStyle.NormalFocus)

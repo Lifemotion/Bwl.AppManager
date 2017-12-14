@@ -36,6 +36,7 @@ Partial Class AppManagerForm
         Me.CheckDependensiesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MSysGitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MicrosoftBuildTools2015ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mUpdateAvailable = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.cbAppsInstalled = New System.Windows.Forms.CheckBox()
         Me.cbAppsAvailable = New System.Windows.Forms.CheckBox()
@@ -45,7 +46,7 @@ Partial Class AppManagerForm
         '
         'menuMain
         '
-        Me.menuMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AppManagerToolStripMenuItem, Me.AboutToolStripMenuItem})
+        Me.menuMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AppManagerToolStripMenuItem, Me.AboutToolStripMenuItem, Me.mUpdateAvailable})
         Me.menuMain.Location = New System.Drawing.Point(0, 0)
         Me.menuMain.Name = "menuMain"
         Me.menuMain.Size = New System.Drawing.Size(917, 24)
@@ -124,9 +125,17 @@ Partial Class AppManagerForm
         Me.MicrosoftBuildTools2015ToolStripMenuItem.Size = New System.Drawing.Size(213, 22)
         Me.MicrosoftBuildTools2015ToolStripMenuItem.Text = "Microsoft Build Tools 2015"
         '
+        'mUpdateAvailable
+        '
+        Me.mUpdateAvailable.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(204, Byte))
+        Me.mUpdateAvailable.Name = "mUpdateAvailable"
+        Me.mUpdateAvailable.Size = New System.Drawing.Size(115, 20)
+        Me.mUpdateAvailable.Text = "Update available!"
+        Me.mUpdateAvailable.Visible = False
+        '
         'StatusStrip1
         '
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 509)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 581)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Size = New System.Drawing.Size(917, 22)
         Me.StatusStrip1.TabIndex = 2
@@ -164,14 +173,14 @@ Partial Class AppManagerForm
         Me.mainPanel.AutoScroll = True
         Me.mainPanel.Location = New System.Drawing.Point(0, 43)
         Me.mainPanel.Name = "mainPanel"
-        Me.mainPanel.Size = New System.Drawing.Size(917, 465)
+        Me.mainPanel.Size = New System.Drawing.Size(917, 537)
         Me.mainPanel.TabIndex = 5
         '
         'AppManagerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(917, 531)
+        Me.ClientSize = New System.Drawing.Size(917, 603)
         Me.Controls.Add(Me.mainPanel)
         Me.Controls.Add(Me.cbAppsAvailable)
         Me.Controls.Add(Me.cbAppsInstalled)
@@ -204,4 +213,5 @@ Partial Class AppManagerForm
     Friend WithEvents MSysGitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CheckDependensiesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents mainPanel As FlowLayoutPanel
+    Friend WithEvents mUpdateAvailable As ToolStripMenuItem
 End Class
