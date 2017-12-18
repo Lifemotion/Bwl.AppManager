@@ -123,7 +123,8 @@ Partial Class AppControl
         '
         Me.pbIcon.Location = New System.Drawing.Point(0, 9)
         Me.pbIcon.Name = "pbIcon"
-        Me.pbIcon.Size = New System.Drawing.Size(30, 30)
+        Me.pbIcon.Size = New System.Drawing.Size(32, 32)
+        Me.pbIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.pbIcon.TabIndex = 7
         Me.pbIcon.TabStop = False
         '
