@@ -6,6 +6,7 @@
         Sources.Add("GitRepo,https://github.com/Lifemotion/GitterCake,cake-master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Framework,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.GitManager,master")
+        Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.VsTools,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.ProjectGenerator,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Hardware.Serial,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Tools.RunMonitorPlatform,master")
