@@ -1,4 +1,4 @@
-﻿Module AppSources
+Module AppSources
     Public Property Sources As New List(Of String)
     Public Property InfoLoaders As New List(Of IAppInfoLoader)
 
@@ -14,7 +14,9 @@
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.RaspberryPi,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.IrTerm,master")
         Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.Hardware.LowFreqGenerator,master")
+        Sources.Add("GitRepo,https://github.com/Lifemotion/Bwl.CookPad,master")
 
         InfoLoaders.Add(New GuthubAppInfoLoader)
     End Sub
 End Module
+
