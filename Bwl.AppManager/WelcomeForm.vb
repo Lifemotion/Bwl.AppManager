@@ -20,8 +20,11 @@
     End Function
 
     Public Shared Function CheckMBT() As Boolean
-        If IO.File.Exists(IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "MSBuild", "14.0", "Bin", "MSBuild.EXE")) Or
-             IO.File.Exists(IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "MSBuild", "14.0", "Bin", "MSBuild.EXE")) Then
+        If _
+            IO.File.Exists(IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "MSBuild", "15.0", "Bin", "MSBuild.EXE")) Or
+            IO.File.Exists(IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "MSBuild", "15.0", "Bin", "MSBuild.EXE")) Or
+            IO.File.Exists(IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "MSBuild", "14.0", "Bin", "MSBuild.EXE")) Or
+            IO.File.Exists(IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "MSBuild", "14.0", "Bin", "MSBuild.EXE")) Then
             Return True
         Else
             Return False
